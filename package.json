@@ -1,0 +1,18 @@
+{
+  "name": "metis",
+  "version": "0.0.1",
+  "description": "Property graphs for JS applications",
+  "main": "index.js",
+  "scripts": {
+    "compile": "babel metis.js > index.js",
+    "prepublish": "npm run compile"
+  },
+  "author": "Mark Rickerby",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^6.1.18",
+    "babel-cli": "^6.2.0",
+    "babel-core": "^6.3.2",
+    "babel-preset-es2015": "^6.1.18"
+  }
+}
