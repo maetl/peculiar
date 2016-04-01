@@ -20,7 +20,7 @@ export default class Graph {
   }
 
   edges() {
-    const edges = [];
+    let edges = [];
     const nodes = this.nodes();
     Object.keys(nodes).forEach(function(node) {
       edges = edges.concat(nodes[node].entries);
