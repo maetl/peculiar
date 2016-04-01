@@ -14,4 +14,17 @@ export default class Graph {
     this.addNode(edge.to);
     this.index[node].add(edge.to);
   }
+
+  nodes() {
+    return Object.keys(this.index);
+  }
+
+  edges() {
+    const edges = [];
+    const nodes = this.nodes();
+    Object.keys(nodes).forEach(function(node) {
+      edges = edges.concat(nodes[node].entries);
+    });
+    return edges;
+  }
 }
