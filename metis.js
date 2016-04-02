@@ -1,29 +1,43 @@
-export default class Graph {
+import "babel-polyfill";
+
+export class Graph {
   constructor() {
-    this.index = {}
+    this.index = new Map();
   }
 
   addNode(node) {
-    if (!this.index[node]) {
-      this.index[node] = new Set();
+    if (!this.index.has(node)) {
+      this.index.set(node, new Set());
     }
   }
 
   addEdge(edge) {
     this.addNode(edge.from);
     this.addNode(edge.to);
-    this.index[node].add(edge.to);
+    this.index.get(edge.from).add(edge.to);
+  }
+
+  nodesCount() {
+    return this.index.size;
+  }
+
+  edgesCount() {
+    return this.edges().length;
   }
 
   nodes() {
-    return Object.keys(this.index);
+    return this.index;
   }
 
   edges() {
     let edges = [];
-    const nodes = this.nodes();
-    Object.keys(nodes).forEach(function(node) {
-      edges = edges.concat(nodes[node].entries);
+    this.index.forEach(function(node) {
+      node.forEach(function(edge) {
+        edges.push({
+          from: node,
+          to: edge
+        });
+      });
     });
     return edges;
   }
