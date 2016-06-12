@@ -24,4 +24,29 @@ describe('Graph', function() {
     assert.equal(graph.nodesCount(), 3);
     assert.equal(graph.edgesCount(), 2);
   });
+
+  it("enumerates over the node list", function() {
+    var graph = new Graph();
+    graph.addEdge({ from: 1, to: 2});
+    graph.addEdge({ from: 2, to: 3});
+
+    var nodes = graph.nodes();
+
+    assert.equal(nodes[0].id, 1);
+    assert.equal(nodes[1].id, 2);
+    assert.equal(nodes[2].id, 3);
+  });
+
+  it("enumerates over the node list", function() {
+    var graph = new Graph();
+    graph.addEdge({ from: 1, to: 2});
+    graph.addEdge({ from: 1, to: 3});
+    graph.addEdge({ from: 1, to: 4});
+
+    var adjacent = graph.adjacentNodes(1);
+
+    assert.equal(adjacent[0].id, 2);
+    assert.equal(adjacent[1].id, 3);
+    assert.equal(adjacent[2].id, 4);
+  });
 });

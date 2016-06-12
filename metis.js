@@ -1,5 +1,20 @@
 import "babel-polyfill";
 
+export class Node {
+  constructor(id, graph) {
+    this._id = id;
+    this._graph = graph;
+  }
+
+  get id() {
+    return this._id;
+  }
+
+  get outgoing() {
+    return this._graph.adjacentNodes(this._id);
+  }
+}
+
 export class Graph {
   constructor() {
     this.index = new Map();
@@ -25,8 +40,18 @@ export class Graph {
     return this.edges().length;
   }
 
+  adjacentNodes(id) {
+    const _graph = this;
+    return [...this.index.get(id)].map(function(id) {
+      return new Node(id, _graph);
+    });
+  }
+
   nodes() {
-    return this.index;
+    const _graph = this;
+    return [...this.index].map(function(entry) {
+      return new Node(entry[0], _graph);
+    });
   }
 
   edges() {
