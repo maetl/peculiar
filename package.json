@@ -1,6 +1,6 @@
 {
   "name": "metis",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Property graphs for JS applications",
   "main": "index.js",
   "scripts": {
