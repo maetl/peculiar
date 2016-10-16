@@ -15,6 +15,22 @@ export class Node {
   }
 }
 
+export class Edge {
+  constructor(from, to, graph) {
+    this._from = from;
+    this._to = to;
+    this._graph = graph;
+  }
+
+  get from() {
+    return this._from;
+  }
+
+  get to() {
+    return this._to;
+  }
+}
+
 export class Graph {
   constructor() {
     this.index = new Map();
@@ -55,13 +71,11 @@ export class Graph {
   }
 
   edges() {
+    const _graph = this;
     let edges = [];
-    this.index.forEach(function(node) {
-      node.forEach(function(edge) {
-        edges.push({
-          from: node,
-          to: edge
-        });
+    this.index.forEach(function(from) {
+      from.forEach(function(to) {
+        edges.push(new Edge(from, to, _graph));
       });
     });
     return edges;
