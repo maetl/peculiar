@@ -15,6 +15,12 @@ export class Node {
   }
 }
 
+export function createGraph(context) {
+  const graph = new Graph();
+  context(graph);
+  return graph;
+}
+
 export class Edge {
   constructor(from, to, graph) {
     this._from = from;

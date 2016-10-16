@@ -1,7 +1,17 @@
 import assert from 'assert';
-import { Graph } from './metis';
+import { Graph, createGraph } from './metis';
 
 describe('Graph', function() {
+  it("hides mutability in a context scope", function() {
+    var graph = createGraph(function(g) {
+      g.addNode(1);
+      g.addNode(2);
+      g.addNode(3);
+    });
+
+    assert.equal(graph.nodesCount(), 3);
+  });
+
   it("starts empty", function() {
     var graph = new Graph();
     assert.equal(graph.nodesCount(), 0);
