@@ -1,62 +1,40 @@
-import assert from 'assert';
-import { Graph, createGraph } from './metis';
+import assert from "assert";
+import { Queue, PriorityQueue } from "./metis";
 
-describe('Graph', function() {
-  it("hides mutability in a context scope", function() {
-    var graph = createGraph(function(g) {
-      g.addNode(1);
-      g.addNode(2);
-      g.addNode(3);
-    });
-
-    assert.equal(graph.nodesCount(), 3);
-  });
-
+describe("Queue", function() {
   it("starts empty", function() {
-    var graph = new Graph();
-    assert.equal(graph.nodesCount(), 0);
+    var queue = new Queue();
+
+    assert.equal(queue.isEmpty(), true);
   });
 
-  it("can add nodes", function() {
-    var graph = new Graph();
-    graph.addNode(1);
-    graph.addNode(2);
-    graph.addNode(3);
+  it("first in, first out", function() {
+    var queue = new Queue();
+    queue.add("first");
+    queue.add("second");
+    queue.add("third");
 
-    assert.equal(graph.nodesCount(), 3);
+    assert.equal(queue.removeFirst(), "first");
+    assert.equal(queue.removeFirst(), "second");
+    assert.equal(queue.removeFirst(), "third");
+  });
+});
+
+describe("PriorityQueue", function() {
+  it("starts empty", function() {
+    var queue = new PriorityQueue();
+
+    assert.equal(queue.isEmpty(), true);
   });
 
-  it("can add edges", function() {
-    var graph = new Graph();
-    graph.addEdge({ from: 1, to: 2});
-    graph.addEdge({ from: 2, to: 3});
+  it("priority in, priority out", function() {
+    var queue = new PriorityQueue();
+    queue.add("first", 3);
+    queue.add("second", 1);
+    queue.add("third", 2);
 
-    assert.equal(graph.nodesCount(), 3);
-    assert.equal(graph.edgesCount(), 2);
-  });
-
-  it("enumerates over the node list", function() {
-    var graph = new Graph();
-    graph.addEdge({ from: 1, to: 2});
-    graph.addEdge({ from: 2, to: 3});
-
-    var nodes = graph.nodes();
-
-    assert.equal(nodes[0].id, 1);
-    assert.equal(nodes[1].id, 2);
-    assert.equal(nodes[2].id, 3);
-  });
-
-  it("enumerates over the node list", function() {
-    var graph = new Graph();
-    graph.addEdge({ from: 1, to: 2});
-    graph.addEdge({ from: 1, to: 3});
-    graph.addEdge({ from: 1, to: 4});
-
-    var adjacent = graph.adjacentNodes(1);
-
-    assert.equal(adjacent[0].id, 2);
-    assert.equal(adjacent[1].id, 3);
-    assert.equal(adjacent[2].id, 4);
+    assert.equal(queue.removeFirst(), "second");
+    assert.equal(queue.removeFirst(), "third");
+    assert.equal(queue.removeFirst(), "first");
   });
 });

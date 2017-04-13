@@ -1,89 +1,97 @@
-import "babel-polyfill";
+// Simple queue which uses an array as storage.
+//
+// Based on the original idea by Stephen Morley.
+// See: http://code.stephenmorley.org/javascript/queues/
+//
+// @maetl / 2017
+function Queue() {
+  this._entries = [];
+  this._offset = 0;
+}
 
-export class Node {
-  constructor(id, graph) {
-    this._id = id;
-    this._graph = graph;
+Queue.prototype.add = function(entry) {
+  this._entries.push(entry);
+}
+
+Queue.prototype.isEmpty = function(){
+  return (this._entries.length - this._offset) == 0;
+}
+
+Queue.prototype.removeFirst = function() {
+  if (this._entries.length == 0) return;
+
+  var entry = this._entries[this._offset];
+
+  this._offset++;
+
+  // If the space left at the front takes up half of the array then
+  // slice it off and reset the array offset
+  if (this._offset * 2 > this._entries.length) {
+    this._entries = this._entries.slice(this._offset);
+    this._offset = 0;
   }
 
-  get id() {
-    return this._id;
-  }
+  return entry;
+}
 
-  get outgoing() {
-    return this._graph.adjacentNodes(this._id);
+// Simple priority queue using a binary heap array to store items.
+// Uses the empty 0 index trick to simplify the arithmetic as described in
+// Sedgewick's 'Algorithms' book.
+//
+// No JS-specific optimisations have been added to the code. Probably needs
+// a profiling and refactoring tidyup.
+//
+// @maetl / 2017
+function PriorityQueue() {
+  this._heap = [];
+  this._size = 0;
+}
+
+PriorityQueue.prototype.add = function(item, priority) {
+  this._heap[++this._size] = [priority, item];
+  this._bubbleUp(this._size);
+}
+
+PriorityQueue.prototype.isEmpty = function() {
+  return this._size == 0;
+}
+
+PriorityQueue.prototype.removeFirst = function() {
+  var first = this._heap[1][1];
+  this._swap(1, this._size--);
+  this._heap[this._size+1] = null;
+  this._bubbleDown(1);
+  return first;
+}
+
+PriorityQueue.prototype._bubbleUp = function(pos) {
+  while (pos > 1 && this._comparison(Math.floor(pos / 2), pos)) {
+    this._swap(Math.floor(pos / 2), pos);
+    pos = Math.floor(pos / 2);
   }
 }
 
-export function createGraph(context) {
-  const graph = new Graph();
-  context(graph);
-  return graph;
-}
-
-export class Edge {
-  constructor(from, to, graph) {
-    this._from = from;
-    this._to = to;
-    this._graph = graph;
-  }
-
-  get from() {
-    return this._from;
-  }
-
-  get to() {
-    return this._to;
+PriorityQueue.prototype._bubbleDown = function(pos) {
+  while (2 * pos <= this._size) {
+    var next = 2 * pos;
+    if (next < this._size && this._comparison(next, next +1)) next++;
+    if (!this._comparison(pos, next)) break;
+    this._swap(pos, next);
+    pos = next;
   }
 }
 
-export class Graph {
-  constructor() {
-    this.index = new Map();
-  }
+PriorityQueue.prototype._comparison = function(a, b) {
+  return this._heap[a][0] > this._heap[b][0];
+}
 
-  addNode(node) {
-    if (!this.index.has(node)) {
-      this.index.set(node, new Set());
-    }
-  }
+PriorityQueue.prototype._swap = function(a, b) {
+  var item = this._heap[a];
+  this._heap[a] = this._heap[b];
+  this._heap[b] = item;
+}
 
-  addEdge(edge) {
-    this.addNode(edge.from);
-    this.addNode(edge.to);
-    this.index.get(edge.from).add(edge.to);
-  }
-
-  nodesCount() {
-    return this.index.size;
-  }
-
-  edgesCount() {
-    return this.edges().length;
-  }
-
-  adjacentNodes(id) {
-    const _graph = this;
-    return [...this.index.get(id)].map(function(id) {
-      return new Node(id, _graph);
-    });
-  }
-
-  nodes() {
-    const _graph = this;
-    return [...this.index].map(function(entry) {
-      return new Node(entry[0], _graph);
-    });
-  }
-
-  edges() {
-    const _graph = this;
-    let edges = [];
-    this.index.forEach(function(from) {
-      from.forEach(function(to) {
-        edges.push(new Edge(from, to, _graph));
-      });
-    });
-    return edges;
-  }
+module.exports = {
+  Queue,
+  PriorityQueue
 }
