@@ -1,40 +1,34 @@
-import assert from "assert";
-import { Queue, PriorityQueue } from "./metis";
+import test from "ava";
+import { Queue, PriorityQueue } from "./peculiar";
 
-describe("Queue", function() {
-  it("starts empty", function() {
-    var queue = new Queue();
-
-    assert.equal(queue.isEmpty(), true);
-  });
-
-  it("first in, first out", function() {
-    var queue = new Queue();
-    queue.add("first");
-    queue.add("second");
-    queue.add("third");
-
-    assert.equal(queue.removeFirst(), "first");
-    assert.equal(queue.removeFirst(), "second");
-    assert.equal(queue.removeFirst(), "third");
-  });
+test("queue starts empty", t => {
+  const queue = new Queue();
+  t.is(queue.isEmpty(), true);
 });
 
-describe("PriorityQueue", function() {
-  it("starts empty", function() {
-    var queue = new PriorityQueue();
+test("first in, first out", t => {
+  const queue = new Queue();
+  queue.add("first");
+  queue.add("second");
+  queue.add("third");
 
-    assert.equal(queue.isEmpty(), true);
-  });
+  t.is(queue.removeFirst(), "first");
+  t.is(queue.removeFirst(), "second");
+  t.is(queue.removeFirst(), "third");
+});
 
-  it("priority in, priority out", function() {
-    var queue = new PriorityQueue();
-    queue.add("first", 3);
-    queue.add("second", 1);
-    queue.add("third", 2);
+test("priority queue starts empty", t => {
+  const pqueue = new PriorityQueue();
+  t.is(pqueue.isEmpty(), true);
+});
 
-    assert.equal(queue.removeFirst(), "second");
-    assert.equal(queue.removeFirst(), "third");
-    assert.equal(queue.removeFirst(), "first");
-  });
+test("priority in, priority out", t => {
+  const pqueue = new PriorityQueue();
+  pqueue.add("first", 3);
+  pqueue.add("second", 1);
+  pqueue.add("third", 2);
+
+  t.is(pqueue.removeFirst(), "second");
+  t.is(pqueue.removeFirst(), "third");
+  t.is(pqueue.removeFirst(), "first");
 });
