@@ -24,6 +24,14 @@
     "queue.js",
     "priority-queue.js"
   ],
+  "keywords": [
+    "queue",
+    "priority queue",
+    "collection",
+    "ordered",
+    "data structure",
+    "FIFO"
+  ],
   "ava": {
     "require": [
       "esm"
