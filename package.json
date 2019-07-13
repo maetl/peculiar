@@ -1,6 +1,6 @@
 {
   "name": "peculiar",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Container data structures that support queueing and FIFO semantics.",
   "main": "index.js",
   "module": "peculiar.js",
