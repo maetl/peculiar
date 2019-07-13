@@ -4,7 +4,7 @@ class Queue {
     this._offset = 0;
   }
 
-  add(entry) {
+  push(entry) {
     this._entries.push(entry);
   }
 
@@ -12,7 +12,7 @@ class Queue {
     return (this._entries.length - this._offset) == 0;
   }
 
-  removeFirst() {
+  pop() {
     if (this._entries.length == 0) return;
 
     const entry = this._entries[this._offset];

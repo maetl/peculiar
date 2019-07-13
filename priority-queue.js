@@ -4,7 +4,7 @@ class PriorityQueue {
     this._size = 0;
   }
 
-  add(item, priority) {
+  push(item, priority) {
     this._heap[++this._size] = [priority, item];
     this.bubbleUp(this._size);
   }
@@ -13,7 +13,7 @@ class PriorityQueue {
     return this._size == 0;
   }
 
-  removeFirst() {
+  pop() {
     const first = this._heap[1][1];
     this.swap(1, this._size--);
     this._heap[this._size+1] = null;
