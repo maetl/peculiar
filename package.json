@@ -4,7 +4,7 @@
   "description": "Container data structures that support queueing and FIFO semantics.",
   "main": "index.js",
   "scripts": {
-    "compile": "babel metis.js > index.js",
+    "compile": "babel peculiar.js > index.js",
     "prepublish": "npm run compile",
     "test": "npm run compile && mocha --compilers js:babel-core/register tests.js"
   },
