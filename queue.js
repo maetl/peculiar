@@ -34,6 +34,17 @@ class Queue {
 
     return entry;
   }
+
+  [Symbol.iterator]() {
+    let index = this._offset;
+    return {
+      next: () => {
+        const value = this._entries[index++];
+        const done = index > this._entries.length;
+        return { value, done };
+      }
+    }
+  }
 }
 
 export default Queue;

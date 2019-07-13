@@ -25,6 +25,28 @@ class PriorityQueue {
     return first;
   }
 
+  [Symbol.iterator]() {
+    const traversal = this._heap.slice(1);
+    traversal.sort((a, b) => a[0] - b[0]);
+    let index = 0;
+    return {
+      next: () => {
+        const result = traversal[index++];
+        if (result) {
+          return {
+            value: result[1],
+            done: false
+          }
+        } else {
+          return {
+            value: undefined,
+            done: true
+          }
+        }
+      }
+    }
+  }
+
   bubbleUp(pos) {
     while (pos > 1 && this.compare(Math.floor(pos / 2), pos)) {
       this.swap(Math.floor(pos / 2), pos);
