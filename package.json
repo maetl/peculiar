@@ -7,7 +7,7 @@
   "browser": "browser.js",
   "scripts": {
     "build": "rollup -c",
-    "prepublish": "npm run compile",
+    "prepublish": "npm run build",
     "test": "ava --verbose tests.js"
   },
   "author": "Mark Rickerby",
