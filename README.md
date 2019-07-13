@@ -27,6 +27,8 @@ queue.push("first")
 queue.push("second")
 queue.push("third")
 
+queue.peek() // => first
+
 queue.pop() // => first
 queue.pop() // => second
 queue.pop() // => third
@@ -43,6 +45,8 @@ const pqueue = new PriorityQueue();
 pqueue.push("first", 3)
 pqueue.push("second", 1)
 pqueue.push("third", 2)
+
+pqueue.peek() // => second
 
 pqueue.pop() // => second
 pqueue.pop() // => third

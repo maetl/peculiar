@@ -13,6 +13,10 @@ class PriorityQueue {
     return this._size == 0;
   }
 
+  peek() {
+    return this._heap[1][1];
+  }
+
   pop() {
     const first = this._heap[1][1];
     this.swap(1, this._size--);

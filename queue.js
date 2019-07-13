@@ -12,6 +12,12 @@ class Queue {
     return (this._entries.length - this._offset) == 0;
   }
 
+  peek() {
+    if (this._entries.length == 0) return;
+
+    return this._entries[this._offset];
+  }
+
   pop() {
     if (this._entries.length == 0) return;
 
