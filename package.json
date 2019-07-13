@@ -1,7 +1,7 @@
 {
-  "name": "metis",
+  "name": "peculiar",
   "version": "0.1.0",
-  "description": "Property graphs for JS applications",
+  "description": "Container data structures that support queueing and FIFO semantics.",
   "main": "index.js",
   "scripts": {
     "compile": "babel metis.js > index.js",

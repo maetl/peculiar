@@ -1,17 +1,17 @@
-# Metis
+# Peculiar
 
-A simple handcrafted library of standard data structures in JavaScript.
-
-## Install
-
-```
-npm install --save metis
-```
+A collection of JavaScript container data structures that support queueing and FIFO semantics.
 
 ## Contents
 
 - `Queue`
 - `PriorityQueue`
+
+## Install
+
+```
+npm install --save peculiar
+```
 
 ## Usage
 
@@ -20,7 +20,7 @@ npm install --save metis
 Elements are returned in on first-in-first-out order.
 
 ```js
-import { Queue } from "metis"
+import Queue from "peculiar/queue"
 
 const queue = new Queue();
 queue.add("first")
@@ -37,14 +37,14 @@ queue.removeFirst() // => third
 Elements with higher priority are returned before elements with lower priority.
 
 ```js
-import { PriorityQueue } from "metis"
+import PriorityQueue from "peculiar/priority-queue"
 
-const queue = new PriorityQueue();
-queue.add("first", 3)
-queue.add("second", 1)
-queue.add("third", 2)
+const pqueue = new PriorityQueue();
+pqueue.add("first", 3)
+pqueue.add("second", 1)
+pqueue.add("third", 2)
 
-queue.removeFirst() // => second
-queue.removeFirst() // => third
-queue.removeFirst() // => first
+pqueue.removeFirst() // => second
+pqueue.removeFirst() // => third
+pqueue.removeFirst() // => first
 ```
