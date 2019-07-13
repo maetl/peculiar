@@ -20,7 +20,9 @@
   "files": [
     "peculiar.js",
     "index.js",
-    "browser.js"
+    "browser.js",
+    "queue.js",
+    "priority-queue.js"
   ],
   "ava": {
     "require": [
