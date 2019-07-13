@@ -2,7 +2,7 @@ import pkg from './package.json';
 
 export default [
 	{
-		input: 'src/peculiar.js',
+		input: 'peculiar.js',
 		output: {
       name: 'rung',
 			file: pkg.browser,
@@ -10,7 +10,7 @@ export default [
 		}
 	},
 	{
-		input: 'src/peculiar.js',
+		input: 'peculiar.js',
 		output: [
 			{ file: pkg.main, format: 'cjs' }
 		]
