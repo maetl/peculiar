@@ -39,7 +39,7 @@ test("priority queue starts empty", t => {
 });
 
 
-test("priority in, priority out", t => {
+test("min priority queue", t => {
   const pqueue = new PriorityQueue();
   pqueue.push("first", 3);
   pqueue.push("second", 1);
@@ -51,6 +51,19 @@ test("priority in, priority out", t => {
   t.is(pqueue.pop(), "third");
   t.is(pqueue.pop(), "first");
 });
+
+// test("max priority queue", t => {
+//   const pqueue = new PriorityQueue();
+//   pqueue.push("first", 3);
+//   pqueue.push("second", 1);
+//   pqueue.push("third", 2);
+//
+//   t.is(pqueue.peek(), "first");
+//
+//   t.is(pqueue.pop(), "first");
+//   t.is(pqueue.pop(), "third");
+//   t.is(pqueue.pop(), "second");
+// });
 
 test("priority queue is iterable", t => {
   const pqueue = new PriorityQueue();

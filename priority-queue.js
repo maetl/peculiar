@@ -4,8 +4,8 @@ class PriorityQueue {
     this._size = 0;
   }
 
-  push(item, priority) {
-    this._heap[++this._size] = [priority, item];
+  push(element, priority) {
+    this._heap[++this._size] = [element, priority];
     this.bubbleUp(this._size);
   }
 
@@ -14,27 +14,42 @@ class PriorityQueue {
   }
 
   peek() {
-    return this._heap[1][1];
+    return this._heap[1][0];
   }
 
   pop() {
-    const first = this._heap[1][1];
+    return this.shift();
+  }
+
+  shift() {
+    const [element, priority] = this.poll();
+    return element;
+  }
+
+  poll() {
+    const first = this._heap[1];
     this.swap(1, this._size--);
     this._heap[this._size+1] = null;
     this.bubbleDown(1);
     return first;
   }
 
+  adjustBy(priority) {
+    for (let i=1; i<=this._size; i++) {
+      this._heap[i][1] += priority;
+    }
+  }
+
   [Symbol.iterator]() {
     const traversal = this._heap.slice(1);
-    traversal.sort((a, b) => a[0] - b[0]);
+    traversal.sort((a, b) => a[1] - b[1]);
     let index = 0;
     return {
       next: () => {
         const result = traversal[index++];
         if (result) {
           return {
-            value: result[1],
+            value: result[0],
             done: false
           }
         } else {
@@ -66,7 +81,7 @@ class PriorityQueue {
   }
 
   compare(a, b) {
-    return this._heap[a][0] > this._heap[b][0];
+    return this._heap[a][1] > this._heap[b][1];
   }
 
   swap(a, b) {
