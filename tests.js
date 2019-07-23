@@ -13,6 +13,7 @@ test("first in, first out", t => {
   queue.push("third");
 
   t.is(queue.peek(), "first");
+  t.is(queue.length, 3);
 
   t.is(queue.shift(), "first");
   t.is(queue.shift(), "second");
@@ -46,6 +47,7 @@ test("min priority queue", t => {
   pqueue.push("third", 2);
 
   t.is(pqueue.peek(), "second");
+  t.is(pqueue.length, 3);
 
   t.is(pqueue.shift(), "second");
   t.is(pqueue.shift(), "third");

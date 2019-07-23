@@ -34,6 +34,12 @@ queue.shift() // => second
 queue.shift() // => third
 ```
 
+Use the `length` accessor to read the size of the queue.
+
+```js
+queue.length
+```
+
 ### `PriorityQueue`
 
 Elements with higher priority are returned before elements with lower priority.
@@ -71,6 +77,12 @@ pqueue.adjustBy(20) // twenty => 40, fifty => 70
 
 // subtract 10 from all priorities
 pqueue.adjustBy(-10) // twenty => 30, fifty => 60
+```
+
+Use the `length` accessor to read the size of the priority queue.
+
+```js
+pqueue.length
 ```
 
 ## Roadmap

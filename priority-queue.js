@@ -9,6 +9,10 @@ class PriorityQueue {
     this.bubbleUp(this._size);
   }
 
+  get length() {
+    return this._size;
+  }
+
   isEmpty() {
     return this._size == 0;
   }

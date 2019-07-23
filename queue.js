@@ -8,6 +8,10 @@ class Queue {
     this._entries.push(entry);
   }
 
+  get length() {
+    return this._entries.length - this._offset;
+  }
+
   isEmpty() {
     return (this._entries.length - this._offset) == 0;
   }
