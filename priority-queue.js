@@ -17,10 +17,6 @@ class PriorityQueue {
     return this._heap[1][0];
   }
 
-  pop() {
-    return this.shift();
-  }
-
   shift() {
     const [element, priority] = this.poll();
     return element;

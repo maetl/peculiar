@@ -17,7 +17,7 @@ npm install --save peculiar
 
 ### `Queue`
 
-Elements are returned in on first-in-first-out order.
+Elements are returned in first-in-first-out order.
 
 ```js
 import Queue from "peculiar/queue"
@@ -29,9 +29,9 @@ queue.push("third")
 
 queue.peek() // => first
 
-queue.pop() // => first
-queue.pop() // => second
-queue.pop() // => third
+queue.shift() // => first
+queue.shift() // => second
+queue.shift() // => third
 ```
 
 ### `PriorityQueue`
@@ -48,7 +48,27 @@ pqueue.push("third", 2)
 
 pqueue.peek() // => second
 
-pqueue.pop() // => second
-pqueue.pop() // => third
-pqueue.pop() // => first
+pqueue.shift() // => second
+pqueue.shift() // => third
+pqueue.shift() // => first
+```
+
+Use `poll` to return a tuple-like array of the element and its priority.
+
+```js
+const [element, priority] = pqueue.poll()
+```
+
+To adjust all priorities by a fixed value, pass the term to `adjustBy`.
+
+```js
+const pqueue = new PriorityQueue();
+pqueue.push("twenty", 20)
+pqueue.push("fifty", 50)
+
+// add 20 to all priorities
+pqueue.adjustBy(20) // twenty => 40, fifty => 70
+
+// subtract 10 from all priorities
+pqueue.adjustBy(-10) // twenty => 30, fifty => 60
 ```

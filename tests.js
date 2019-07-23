@@ -14,9 +14,9 @@ test("first in, first out", t => {
 
   t.is(queue.peek(), "first");
 
-  t.is(queue.pop(), "first");
-  t.is(queue.pop(), "second");
-  t.is(queue.pop(), "third");
+  t.is(queue.shift(), "first");
+  t.is(queue.shift(), "second");
+  t.is(queue.shift(), "third");
 });
 
 test("queue is iterable", t => {
@@ -47,9 +47,9 @@ test("min priority queue", t => {
 
   t.is(pqueue.peek(), "second");
 
-  t.is(pqueue.pop(), "second");
-  t.is(pqueue.pop(), "third");
-  t.is(pqueue.pop(), "first");
+  t.is(pqueue.shift(), "second");
+  t.is(pqueue.shift(), "third");
+  t.is(pqueue.shift(), "first");
 });
 
 // test("max priority queue", t => {
@@ -60,9 +60,9 @@ test("min priority queue", t => {
 //
 //   t.is(pqueue.peek(), "first");
 //
-//   t.is(pqueue.pop(), "first");
-//   t.is(pqueue.pop(), "third");
-//   t.is(pqueue.pop(), "second");
+//   t.is(pqueue.shift(), "first");
+//   t.is(pqueue.shift(), "third");
+//   t.is(pqueue.shift(), "second");
 // });
 
 test("priority queue is iterable", t => {

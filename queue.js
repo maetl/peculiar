@@ -18,7 +18,7 @@ class Queue {
     return this._entries[this._offset];
   }
 
-  pop() {
+  shift() {
     if (this._entries.length == 0) return;
 
     const entry = this._entries[this._offset];
