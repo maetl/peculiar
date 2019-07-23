@@ -22,7 +22,7 @@ class Queue {
     return this._entries[this._offset];
   }
 
-  shift() {
+  poll() {
     if (this._entries.length == 0) return;
 
     const entry = this._entries[this._offset];

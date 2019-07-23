@@ -29,9 +29,9 @@ queue.push("third")
 
 queue.peek() // => first
 
-queue.shift() // => first
-queue.shift() // => second
-queue.shift() // => third
+queue.poll() // => first
+queue.poll() // => second
+queue.poll() // => third
 ```
 
 Use the `length` accessor to read the size of the queue.
@@ -54,15 +54,15 @@ pqueue.push("third", 2)
 
 pqueue.peek() // => second
 
-pqueue.shift() // => second
-pqueue.shift() // => third
-pqueue.shift() // => first
+pqueue.poll() // => second
+pqueue.poll() // => third
+pqueue.poll() // => first
 ```
 
-Use `poll` to return a tuple-like array of the element and its priority.
+Use `pollIndex` to return a tuple-like array of the element and its priority index.
 
 ```js
-const [element, priority] = pqueue.poll()
+const [element, priority] = pqueue.pollIndex()
 ```
 
 To adjust all priorities by a fixed value, pass the term to `adjustBy`.
@@ -98,6 +98,7 @@ Some features that are unplanned and haven’t seen any effort yet, but potentia
 - Consider possible uses for typed array storage rather than dynamic arrays
 - Add linked list with sorted insert as an alternative priority queue
 - Add ring buffer and variations
+- Add bucket queue
 - Add splay tree
 - Improve the documentation
 

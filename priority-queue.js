@@ -21,17 +21,17 @@ class PriorityQueue {
     return this._heap[1][0];
   }
 
-  shift() {
-    const [element, priority] = this.poll();
+  poll() {
+    const [element] = this.pollIndex();
     return element;
   }
 
-  poll() {
-    const first = this._heap[1];
+  pollIndex() {
+    const index = this._heap[1];
     this.swap(1, this._size--);
     this._heap[this._size+1] = null;
     this.bubbleDown(1);
-    return first;
+    return index;
   }
 
   adjustBy(priority) {
