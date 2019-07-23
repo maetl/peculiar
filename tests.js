@@ -54,18 +54,18 @@ test("min priority queue", t => {
   t.is(pqueue.poll(), "first");
 });
 
-// test("max priority queue", t => {
-//   const pqueue = new PriorityQueue();
-//   pqueue.push("first", 3);
-//   pqueue.push("second", 1);
-//   pqueue.push("third", 2);
-//
-//   t.is(pqueue.peek(), "first");
-//
-//   t.is(pqueue.shift(), "first");
-//   t.is(pqueue.shift(), "third");
-//   t.is(pqueue.shift(), "second");
-// });
+test("max priority queue", t => {
+  const pqueue = new PriorityQueue(PriorityQueue.MAX);
+  pqueue.push("first", 3);
+  pqueue.push("second", 1);
+  pqueue.push("third", 2);
+
+  t.is(pqueue.peek(), "first");
+
+  t.is(pqueue.poll(), "first");
+  t.is(pqueue.poll(), "third");
+  t.is(pqueue.poll(), "second");
+});
 
 test("priority queue is iterable", t => {
   const pqueue = new PriorityQueue();

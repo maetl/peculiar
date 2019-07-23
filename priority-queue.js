@@ -1,7 +1,8 @@
 class PriorityQueue {
-  constructor() {
+  constructor(compareMax=false) {
     this._heap = [];
     this._size = 0;
+    this.compare = compareMax ? this.compareMax : this.compareMin;
   }
 
   push(element, priority) {
@@ -80,8 +81,12 @@ class PriorityQueue {
     }
   }
 
-  compare(a, b) {
+  compareMin(a, b) {
     return this._heap[a][1] > this._heap[b][1];
+  }
+
+  compareMax(a, b) {
+    return this._heap[b][1] > this._heap[a][1];
   }
 
   swap(a, b) {
@@ -90,5 +95,8 @@ class PriorityQueue {
     this._heap[b] = item;
   }
 }
+
+PriorityQueue.MAX = true;
+PriorityQueue.MIN = false;
 
 export default PriorityQueue;

@@ -42,7 +42,7 @@ queue.length
 
 ### `PriorityQueue`
 
-Elements with higher priority are returned before elements with lower priority.
+Elements with higher priority are returned before elements with lower priority. The default is a min queue, meaning that the priority order goes from lowest number to highest number.
 
 ```js
 import PriorityQueue from "peculiar/priority-queue"
@@ -57,6 +57,12 @@ pqueue.peek() // => second
 pqueue.poll() // => second
 pqueue.poll() // => third
 pqueue.poll() // => first
+```
+
+To use a max priority queue where the highest numbers are the highest priorities, pass the `PriorityQueue.MAX` flag or boolean `true` to the constructor.
+
+```js
+const pqueue = new PriorityQueue(PriorityQueue.MAX);
 ```
 
 Use `pollIndex` to return a tuple-like array of the element and its priority index.
