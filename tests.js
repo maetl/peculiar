@@ -34,6 +34,21 @@ test("queue is iterable", t => {
   t.is(result[2], "third");
 });
 
+test("queue can be cleared", t => {
+  const queue = new Queue();
+  queue.push("first");
+  queue.push("second");
+  queue.push("third");
+
+  t.is(queue.length, 3);
+  t.is(queue.isEmpty(), false);
+
+  queue.clear();
+
+  t.is(queue.length, 0);
+  t.is(queue.isEmpty(), true);
+});
+
 test("priority queue starts empty", t => {
   const pqueue = new PriorityQueue();
   t.is(pqueue.isEmpty(), true);
@@ -83,4 +98,19 @@ test("priority queue is iterable", t => {
   t.is(result[2], "c");
   t.is(result[3], "d");
   t.is(result[4], "e");
+});
+
+test("priority queue can be cleared", t => {
+  const pqueue = new PriorityQueue();
+  pqueue.push("first", 1);
+  pqueue.push("second", 2);
+  pqueue.push("third", 3);
+
+  t.is(pqueue.length, 3);
+  t.is(pqueue.isEmpty(), false);
+
+  pqueue.clear();
+
+  t.is(pqueue.length, 0);
+  t.is(pqueue.isEmpty(), true);
 });

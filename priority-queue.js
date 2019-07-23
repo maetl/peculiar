@@ -94,6 +94,11 @@ class PriorityQueue {
     this._heap[a] = this._heap[b];
     this._heap[b] = item;
   }
+
+  clear() {
+    this._heap = [];
+    this._size = 0;
+  }
 }
 
 PriorityQueue.MAX = true;

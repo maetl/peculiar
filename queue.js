@@ -49,6 +49,11 @@ class Queue {
       }
     }
   }
+
+  clear() {
+    this._entries = [];
+    this._offset = 0;
+  }
 }
 
 export default Queue;

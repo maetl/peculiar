@@ -34,10 +34,21 @@ queue.poll() // => second
 queue.poll() // => third
 ```
 
-Use the `length` accessor to read the size of the queue.
+To remove all current elements from the queue and reset it to a blank slate, call `clear`. Use the `length` accessor to read the size of the queue or `isEmpty` to check whether the queue has zero elements.
 
 ```js
-queue.length
+const queue = new Queue();
+queue.push("first")
+queue.push("second")
+queue.push("third")
+
+queue.length // => 3
+queue.isEmpty() // => false
+
+queue.clear()
+
+queue.length // => 0
+queue.isEmpty() // => true
 ```
 
 ### `PriorityQueue`
@@ -85,17 +96,28 @@ pqueue.adjustBy(20) // twenty => 40, fifty => 70
 pqueue.adjustBy(-10) // twenty => 30, fifty => 60
 ```
 
-Use the `length` accessor to read the size of the priority queue.
+To remove all current elements from the priority queue and reset it to a blank slate, call `clear`. Use the `length` accessor to read the size of the priority queue or `isEmpty` to check whether the queue has zero elements.
 
 ```js
-pqueue.length
+const pqueue = new PriorityQueue();
+pqueue.push("first", 3)
+pqueue.push("second", 1)
+pqueue.push("third", 2)
+
+pqueue.length // => 3
+pqueue.isEmpty() // => false
+
+pqueue.clear()
+
+pqueue.length // => 0
+pqueue.isEmpty() // => true
 ```
 
 ## Roadmap
 
 The library is close to complete for basic queue operations and the original code here has seen a bit of use in production over the past few years (before being packaged up into this library).
 
-Some features that are unplanned and haven’t seen any effort yet, but potentially on the horizon (some of these additional data structures change the focus of the library a little beyond queueing, but are a fairly good complement to what’s already here):
+The following features are unplanned and haven’t seen any effort yet, but are potentially on the horizon. Some of these additional data structures go a little beyond queueing, but are a fairly good complement to what’s already here.
 
 - Provide customizable comparator function rather than strict min/max in priority queue
 - Provide `toArray` and `toSet` methods on each data structure
