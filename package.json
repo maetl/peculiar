@@ -1,6 +1,6 @@
 {
   "name": "peculiar",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "Container data structures that support queueing and FIFO semantics.",
   "main": "index.js",
   "module": "peculiar.js",
@@ -8,14 +8,14 @@
   "scripts": {
     "build": "rollup -c",
     "prepublish": "npm run build",
-    "test": "ava --verbose tests.js"
+    "test": "ava --verbose"
   },
   "author": "Mark Rickerby",
   "license": "MIT",
   "devDependencies": {
-    "ava": "^2.2.0",
+    "ava": "^3.5.0",
     "esm": "^3.2.25",
-    "rollup": "^1.16.7"
+    "rollup": "^2.0.6"
   },
   "files": [
     "peculiar.js",
