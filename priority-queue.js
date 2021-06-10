@@ -1,3 +1,21 @@
+/**
+ * An ordered collection data structure where elements with higher priority are
+ * returned before elements with lower priority.
+ *
+ * ```js
+ * const pqueue = new PriorityQueue();
+ *
+ * pqueue.push("%%%", 3)
+ * pqueue.push("!!!", 1)
+ * pqueue.push("&&&", 2)
+ *
+ * pqueue.peek() // => "!!!"
+ *
+ * pqueue.poll() // => "!!!"
+ * pqueue.poll() // => "&&&"
+ * pqueue.poll() // => "%%%"
+ * ```
+ */
 class PriorityQueue {
   constructor(compareMax=false) {
     this._heap = [];
@@ -5,6 +23,12 @@ class PriorityQueue {
     this.compare = compareMax ? this.compareMax : this.compareMin;
   }
 
+  /**
+   * Adds a new element to the queue.
+   *
+   * @param  {mixed} element  Element to be stored in the queue
+   * @param  {number} priority Priority assigned to the element
+   */
   push(element, priority) {
     this._heap[++this._size] = [element, priority];
     this.bubbleUp(this._size);
