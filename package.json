@@ -1,6 +1,6 @@
 {
   "name": "peculiar",
-  "version": "0.14.0-wip",
+  "version": "0.14.0",
   "type": "module",
   "description": "Container data structures that support queueing and FIFO semantics.",
   "repository": "git@github.com:maetl/peculiar",
@@ -21,8 +21,8 @@
     "typescript": "^4.6.2"
   },
   "module": "src/peculiar.js",
-  "main": "dist/rung.bundle.cjs",
-  "types": "types/rung.d.ts",
+  "main": "dist/peculiar.bundle.cjs",
+  "types": "types/peculiar.d.ts",
   "sideEffects": false,
   "exports": {
     ".": {
