@@ -1,3 +1,7 @@
 index.js
 browser.js
 node_modules
+dist
+types
+www
+docs

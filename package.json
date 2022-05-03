@@ -1,29 +1,44 @@
 {
   "name": "peculiar",
-  "version": "0.13.0",
-  "repository": "git@github.com:maetl/peculiar",
+  "version": "0.14.0-wip",
+  "type": "module",
   "description": "Container data structures that support queueing and FIFO semantics.",
-  "main": "index.js",
-  "module": "peculiar.js",
-  "browser": "browser.js",
-  "scripts": {
-    "build": "rollup -c",
-    "prepublish": "npm run build",
-    "test": "ava --verbose"
-  },
+  "repository": "git@github.com:maetl/peculiar",
   "author": "Mark Rickerby",
   "license": "MIT",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "npm run build:bundle ; npm run build:compile",
+    "build:bundle": "rollup -c",
+    "build:compile": "tsc",
+    "test": "ava --verbose"
+  },
   "devDependencies": {
-    "ava": "^3.5.0",
-    "esm": "^3.2.25",
-    "rollup": "^2.0.6"
+    "@rollup/plugin-json": "^4.1.0",
+    "ava": "^4.1.0",
+    "rollup": "^2.70.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.6.2"
+  },
+  "module": "src/peculiar.js",
+  "main": "dist/rung.bundle.cjs",
+  "types": "types/rung.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./src/peculiar.js",
+      "require": "./dist/peculiar.bundle.cjs"
+    },
+    "./priority-queue": "./src/priority-queue.js",
+    "./queue": "./src/queue.js",
+    "./types/": "./types/"
   },
   "files": [
-    "peculiar.js",
-    "index.js",
-    "browser.js",
-    "queue.js",
-    "priority-queue.js"
+    "dist",
+    "src",
+    "types",
+    "README.md",
+    "LICENSE"
   ],
   "keywords": [
     "queue",
@@ -32,10 +47,5 @@
     "ordered",
     "data structure",
     "FIFO"
-  ],
-  "ava": {
-    "require": [
-      "esm"
-    ]
-  }
+  ]
 }
