@@ -1,6 +1,6 @@
 {
   "name": "peculiar",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "type": "module",
   "description": "Container data structures that support queueing and FIFO semantics.",
   "repository": "git@github.com:maetl/peculiar",
