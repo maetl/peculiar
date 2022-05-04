@@ -5,7 +5,7 @@ A collection of JavaScript container data structures that support queueing and F
 ## Status
 
 [![npm](https://img.shields.io/npm/v/peculiar.svg)](https://npmjs.org/package/peculiar)
-[![travis](https://img.shields.io/travis/maetl/peculiar.svg)](https://travis-ci.org/maetl/peculiar)
+[![github](https://img.shields.io/github/workflow/status/maetl/peculiar/Node.js%20CI)](https://github.com/maetl/peculiar/actions)
 
 ## Install
 
